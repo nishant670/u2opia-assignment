@@ -1,0 +1,1 @@
+export const OWM_KEY = "8d1188cccb573fb90a227a79b91cda62"

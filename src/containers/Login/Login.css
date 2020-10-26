@@ -1,0 +1,31 @@
+.login-wrapper{
+    /* background-color: lightblue; */
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.btn-google-login {
+    border-radius: 6px;
+    background-color: #fff;
+    width: 283px;
+    height: 56px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 60px 0 16px;
+    justify-content: space-between;
+    font-family: 'Metropolis',sans-serif;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--dark-blue-grey);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

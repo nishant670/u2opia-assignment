@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+.header>h4{
+    font-size: 2rem;
+    color: #fff;
+}
+.forecast-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+.logout{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
