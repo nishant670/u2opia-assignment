@@ -1,10 +1,11 @@
-.header{
+.heading{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
+    margin-top: 60px;
 }
-.header>h4{
+.heading>h4{
     font-size: 2rem;
     color: #fff;
 }
@@ -17,7 +18,28 @@
     flex-wrap: wrap;
 }
 .logout{
-    position: absolute;
-    top: 20px;
-    right: 40px;
+    border: 1.5px solid red;
+    color: red;
+    background-color: transparent;
+    padding: 5px 20px;
+    height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+}
+.logout:hover{
+    background-color: red;
+    color: #fff;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    padding: 10px 25px;
+    height: 60px;
+    background-color: #fff;
+    justify-content: space-between;
+    align-items: center;
 }

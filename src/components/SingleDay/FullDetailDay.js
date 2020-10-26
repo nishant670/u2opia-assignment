@@ -6,15 +6,14 @@ import Duration from './Duration';
 
 class FullDetailDay extends Component {
 
-    state = {
-        thisDay: []
+    backHandler = () => {
+        this.props.history.push('/')
     }
 
     render() {
 
         const { selectedDay, fullData, location } = this.props;
 
-            
         const dayObject = fullData.find(ob => {
             return ob.dt === selectedDay
         })
@@ -43,19 +42,13 @@ class FullDetailDay extends Component {
             )
         })
 
-        // const location = 
-
-        console.log(dateToBe)
-        console.log(thisDayData)
-        console.log(location)
-        console.log(dayIcon)
-
         return (
             selectedDay ?
                 <div className="detail-wrapper">
+                    <p className="back" onClick={this.backHandler}>Back</p>
                     <div>
                         <div>
-                            <p>{location}</p>
+                            <p style={{fontWeight: 500}}>{location}</p>
                             <p>{moment(dateTime).format('LLLL')}</p>
                         </div>
                         <div className="middle-details">

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
-import { Redirect } from 'react-router-dom'
-
 
 import './Login.css'
+import { failNotify } from '../../components/UI/Toast'
 
 const firebaseConfig = {
     apiKey: "AIzaSyBN0vfpj65TbVkDIPAh3L_sj8m4dDjVnmU",
@@ -19,12 +18,8 @@ firebase.initializeApp(firebaseConfig);
 
 class Login extends Component {
 
-    state = {
-        loginStatus: false
-    }
-
-    componentDidMount(){
-        if(sessionStorage.getItem('token')){
+    componentDidMount() {
+        if (sessionStorage.getItem('token')) {
             this.redirect();
         }
     }
@@ -32,14 +27,15 @@ class Login extends Component {
     redirect = () => {
         this.props.history.push(`${process.env.PUBLIC_URL + '/'}`)
     }
-    
+
     logout = () => {
         firebase.auth().signOut()
             .then(function () {
                 sessionStorage.removeItem('token');
+                sessionStorage.removeItem('user')
             })
             .catch(function (error) {
-                console.log(error)
+                failNotify(error)
             })
     }
 
@@ -56,26 +52,31 @@ class Login extends Component {
             window.location = "/";
         }).catch(function (error) {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-            console.log(error)
+            if (error) {
+                if (error.code) {
+                    const errorCode = error.code;
+                    failNotify(errorCode)
+                }
+                else if (error.message) {
+                    const errorMessage = error.message;
+                    failNotify(errorMessage)
+                }
+                else if (error.email) {
+                    const email = error.email;
+                    failNotify(email)
+                }
+                else {
+                    const credential = error.credential;
+                    failNotify(credential)
+                }
+            }
         });
     }
+
     render() {
-        console.log(this.props)
-        console.log(this.state.loginStatus)
-        let screen;
-        if (sessionStorage.getItem('token')) {
-            screen = <Redirect to={`${process.env.PUBLIC_URL + '/'}`} />
-        }
         return (
             <div className="login-wrapper">
-                {/* {screen} */}
+                <h2 className="login-text">LOGIN</h2>
                 <button className="btn-google-login" onClick={this.loginClick}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
                         <g fill="none">
@@ -88,6 +89,7 @@ class Login extends Component {
                         </g>
                     </svg>
                     Continue with Google</button>
+                <div className="thin-bg"></div>
             </div>
         )
     }
